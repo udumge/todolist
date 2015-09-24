@@ -65,7 +65,7 @@
             <span class="input-group-btn">
               <button class="btn btn-success" type="button" data-bind="click: doneTodo" ><span data-bind="text: buttonName"></span></button>
             </span>
-            <input type="text" class="form-control" placeholder="What To Do" data-bind="disable: todoDisable" />
+            <input type="text" class="form-control" placeholder="What To Do" data-bind="disable: todoDisable, css: todoDisableCss" />
           </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
         <div class="space-v-1"/>
@@ -101,10 +101,15 @@
     <!-- tmp -->
     <script type="text/javascript">
       var toDoListView = {
-        defaultTodo: "What To Do!",
-        buttonName: "Done",
-        todoDisable: ko.observable(false),
-        doneTodo: function() { this.todoDisable(true); }
+
+        defaultTodo: "What To Do!", // Default Todo String
+        buttonName: "Done", // Default Button Name
+        todoDisable: ko.observable(false), // Text Disable status, defult Text Input enable
+        todoDisableCss: ko.observable(""),
+        doneTodo: function() {
+          this.todoDisable(true);
+          this.todoDisableCss("todoDone");
+        }// if you click 'Done', Text Input disable
       };
 
       //  bind ViewModel
