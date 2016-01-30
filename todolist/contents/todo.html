@@ -7,7 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <!--
-    <meta name="author" content="">
+    <meta name="author" content="">p
     <link rel="icon" href="../../favicon.ico">
   -->
 
@@ -61,25 +61,24 @@
       <div class="row">
         <!-- One ToDo -->
         <span data-bind="foreach: todoList">
-          <div class="col-lg-6">
+          <div class="col-lg-12 space-v-1">
             <div class="input-group">
               <span class="input-group-btn">
                 <button class="btn btn-success" type="button" data-bind="click: doneTodo" ><span data-bind="text: buttonName"></span></button>
               </span>
-              <input type="text" class="form-control" placeholder="What To Do" data-bind="disable: todoDisable, css: todoDisableCss" />
+              <input type="text" class="form-control" placeholder="What To Do" data-bind="disable: todoDisable, css: todoDisableCss" value="" />
             </div><!-- /input-group -->
-          </div><!-- /.col-lg-6 -->
-          <div class="space-v-1"/>
+          </div><!-- /.col-lg-12-->
         </span>
         <!-- /One ToDo -->
+      </div>
 
-        <!-- Add Button -->
-        <div class="col-lg-1">
-          <button type="button" class="btn btn-default" data-bind="click: addToDo">Add ToDo</button>
-        </div>
-        <!-- /Add Button -->
-
-    </div>
+      <!-- Add Button -->
+      <div class="col-lg-2 space-v-1 no-padding">
+        <button type="button" class="btn btn-default" data-bind="click: addTodo">Add ToDo</button>
+      </div>
+      <div class="col-lg-10 space-v-1"><!--NOP--></div>
+      <!-- /Add Button -->
 
     </div><!-- /.container -->
 
@@ -90,7 +89,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="./bootstrap-dist/js/bootstrap.min.js"></script>
     <script src="knockout-3.3.0.js"></<script>
-    </script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
 
@@ -112,22 +110,21 @@
     };
 
 
-      //ToDo list
-      function todoListViewModel(){
-        var self = this;
+    //ToDo list
+    function todoListViewModel(){
+      var self = this;
 
-        self.addTodo = function(){
-          self.todoList.push(new toDoListView());
-        };
-
-        self.todoList = ko.observableArray();
-        self.addTodo();
-
+      self.addTodo = function(){
+        self.todoList.push(new toDoListView());
       };
 
-      ko.applyBindings(new todoListViewModel());
+      self.todoList = ko.observableArray();
+      self.addTodo();
 
-    </script>
+    };
+
+    ko.applyBindings(new todoListViewModel());
+
     </script>
   </body>
 </html>
